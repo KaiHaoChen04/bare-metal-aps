@@ -19,3 +19,27 @@ const INPUT_DISCONNECT: u32 = 0x1 << 1;
 const PULL_DISABLE: u32 = 0x0 << 2;
 const DRIVE_S0S1: u32 = 0x0 << 8;
 const SENSE_DISABLED: u32 = 0x0 << 16;
+
+#[entry]
+fn main() -> ! {
+    let pin_cnf_21 = (GPI0_PO + PIN_CNF + 21 * size_of::<u32>()) as *mut u32;
+    let pin_cnf_28 = (GPI0_PO + PIN_CNF + 28 * size_of::<u32>()) as *mut u32;
+
+    unsafe {
+        pin_cnf_21.write_volatile(
+            DIR_OUTPUT | INPUT_DISCONNECT | PULL_DISABLE | DRIVE_S0S1 | SENSE_DISABLED,
+        );
+        pin_cnf_28.write_volatile(
+            DIR_OUTPUT | INPUT_DISCONNECT | PULL_DISABLE | DRIVE_S0S1 | SENSE_DISABLED,
+        );
+    }
+
+    let gpio0_outset = (GPI0_PO + OUTSET) as *mut u32;
+    let gpio0_outclr = (GPI0_PO + OUTCLR) as *mut u32;
+
+    unsafe {
+        gpio0_outclr.write_volatile(1 << 28);
+        gpio0_outset.write_volatile(1 << 21);
+    }
+    loop {}
+}
