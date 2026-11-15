@@ -1,0 +1,10 @@
+[package]
+name = "bare-metal-aps"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[[bin]]
+name = "raw_mmio"
+path = "src/bin/raw_mmio.rs" 
