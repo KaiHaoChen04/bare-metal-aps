@@ -8,3 +8,7 @@ edition = "2024"
 [[bin]]
 name = "raw_mmio"
 path = "src/bin/raw_mmio.rs" 
+
+[[bin]]
+name = "pacs"
+path = "src/bin/pacs.rs" 
