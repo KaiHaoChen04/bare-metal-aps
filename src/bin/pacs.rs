@@ -29,4 +29,6 @@ fn main() -> ! {
     // set pin 28 low and pin 21 high to turn LED on
     gpio0.outclr.write(|w| w.pin28().clear());
     gpio0.outset.write(|w| w.pin21().set());
+
+    loop {}
 }
