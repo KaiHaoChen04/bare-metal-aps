@@ -12,3 +12,7 @@ path = "src/bin/raw_mmio.rs"
 [[bin]]
 name = "pacs"
 path = "src/bin/pacs.rs" 
+
+[[bin]]
+name = "compass"
+path = "src/bin/compass.rs"
