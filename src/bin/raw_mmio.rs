@@ -39,10 +39,12 @@ fn main() -> ! {
         );
     }
 
+    //compute raw pointer register
     let gpio0_outset = (GPI0_PO + OUTSET) as *mut u32;
     let gpio0_outclr = (GPI0_PO + OUTCLR) as *mut u32;
 
     unsafe {
+        //shift one bit to each corresponding bit position
         gpio0_outclr.write_volatile(1 << 28);
         gpio0_outset.write_volatile(1 << 21);
     }
